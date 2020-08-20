@@ -1,0 +1,52 @@
+<div class="sidebar-wrapper">
+            <div class="title-group">
+                <span class="title">在线课堂</span>
+                <a href="{% url 'courses:courses_index' %}" class="more">更多</a>
+            </div>
+            <div class="advertisement">
+                <a href="javascript:void(0)"><img src="{% static 'images/50505.jpg' %}" alt=""></a>
+            </div>
+            <div class="subscribe">
+                <div class="title-group">
+                    <span class="title">关注XXX</span>
+                </div>
+                <div class="focus-group">
+                    <div class="left-group">
+                        <ul class="icon-group-ul">
+                            <li class="zhihu"><a href="#">XXX创业课堂</a></li>
+                            <li class="weibo"><a href="#">XXX创业课堂</a></li>
+                            <li class="toutiao"><a href="#">XXX</a></li>
+                        </ul>
+                    </div>
+                    <div class="right-group">
+                        <div class="QR-code"></div>
+                        <div class="desc">关注xxx微信公众平台</div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommend">
+                <div class="title-group">
+                    <span class="title">热门推荐</span>
+                </div>
+                <div class="hot-news">
+                    <ul class="hot-news-group">
+                        {% for hotrecommend in hotrecommends %}
+                            <li>
+                                <a href="{% url 'news:news_detail' news_id=hotrecommend.pk %}" target="_blank">
+                                    <div class="hot-news-titles">
+                                        <div class="hot-new-title">{{ hotrecommend.title|truncatechars:10 }}</div>
+                                        <div class="desc">
+                                            <span class="category">{{ hotrecommend.category.category_name }}</span>
+                                            <span class="pub-time">{{ hotrecommend.pub_time|date:'Y-m-d' }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot-new-img">
+                                        <img src="{{ hotrecommend.thumbnail }}" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>

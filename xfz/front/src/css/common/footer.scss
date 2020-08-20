@@ -1,0 +1,180 @@
+@import "base";
+
+.foot {
+    width: 100%;
+    height: 155px;
+    //border: 1px solid red;
+    font-size: $FooterFontSize;
+    color: #c9c9c9;
+    padding-top: 20px;
+
+    .about-box {
+        height: 90px;
+        background: #555e67;
+        //border: 1px solid red;
+
+        .about-us-box {
+            width: $ContaintotalWidth;
+            //border: 1px solid red;
+            height: inherit;
+            margin: 0 auto;
+            //overflow: hidden;
+            box-sizing: border-box;
+
+            .icon {
+                //border: 1px solid red;
+                float: left;
+                width: 200px;
+                height: 100%;
+                background: #555e67 no-repeat 0 15px;
+            }
+
+            .contact-way {
+                height: inherit;
+                width: 700px;
+                //border: 1px solid red;
+                float: left;
+                margin-left: 60px;
+
+                .contact-top {
+                    height: 50%;
+                    //border: 1px solid blue;
+                    //margin-top: 20px;
+
+                    .contact-other-way {
+                        float: left;
+                        bottom: 0;
+                        //border: 1px solid white;
+                        margin-top: 20px;
+
+                        .contact-other-way-ul {
+                            overflow: hidden;
+
+                            li {
+                                float: left;
+
+                                &:first-of-type {
+                                    a {
+                                        padding-left: 0;
+                                    }
+                                }
+
+                                &:last-of-type {
+                                    a {
+                                        border-right: none;
+                                    }
+                                }
+
+                                a {
+                                    color: #c9c9c9;
+                                    padding: 0 10px 0 10px;
+                                    border-right: 1px solid #c9c9c9;
+                                    font-size: $FooterFontSize;
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    .contact-about-us {
+                        float: left;
+                        margin-top: 20px;
+                        margin-left: 20px;
+
+                        span {
+                            float: left;
+                        }
+
+                        .social-group {
+                            float: left;
+                            //overflow: hidden;
+
+                            li {
+                                float: left;
+                                //border: 1px solid red;
+                                margin-right: 10px;
+                                position: relative;
+                            }
+
+                            .weixin1 {
+                                background: url("https://www.xfz.cn/static/build/images/wx-icon.png") no-repeat;
+                                background-size: 38%;
+
+                                .weixin-qrcode1 {
+                                    width: 204px;
+                                    height: 204px;
+                                    background: gray;
+                                    background-size: 100%;
+                                    position: absolute;
+                                    top: -210px;
+                                    left: -100px;
+                                    display: none;
+
+                                }
+
+                                &:hover .weixin-qrcode1 {
+                                    display: block;
+                                }
+
+                                span {
+                                    margin-left: 28px;
+                                    margin-top: 4px;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            .weixin2 {
+                                background: url("https://www.xfz.cn/static/build/images/wx-icon.png") no-repeat;
+                                background-size: 20%;
+
+                                .weixin-qrcode2 {
+                                    width: 204px;
+                                    height: 204px;
+                                    background: gray;
+                                    background-size: 100%;
+                                    position: absolute;
+                                    top: -210px;
+                                    left: -80px;
+                                    display: none;
+                                }
+
+                                &:hover .weixin-qrcode2 {
+                                    display: block;
+                                }
+
+                                span {
+                                    margin-left: 28px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+
+				.contact-bottom {
+				  	height: 50%;
+				  	//border: 1px solid white;
+                    overflow: hidden;
+
+				  	.contact-address {
+                        float: left;
+                    }
+
+				  	.contact-telephone {
+                        float: left;
+                        margin-left: 30px;
+                    }
+				}
+			}
+        }
+    }
+
+    .about-ICP {
+        height: 65px;
+        background: #383e44;
+        text-align: center;
+        line-height: 65px;
+        //border: 1px solid blue;
+    }
+}

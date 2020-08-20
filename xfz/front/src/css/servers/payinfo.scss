@@ -1,0 +1,74 @@
+@import "../common/base";
+@import "../common/body";
+@import "../common/header";
+@import "../common/footer";
+
+.main {
+    .wrapper {
+        .content-wrapper {
+            .venture-banner {
+            }
+
+            .venture-book {
+
+                ul {
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    background: white;
+                    padding: 10px;
+
+                    li {
+                        float: left;
+                        height: 150px;
+                        width: 370px;
+                        border: 1px solid #ccc;
+                        cursor: pointer;
+                        background: white;
+                        margin-bottom: 15px;
+
+                        &:hover {
+                            box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+                        }
+
+                        .venture-img {
+                            float: left;
+                            width: 100px;
+                            height: 150px;
+                            background: url("https://www.xfz.cn/static/build/images/web-bp-pc.png") no-repeat;
+
+                        }
+
+                        .venture-desc {
+                            float: left;
+                            width: 260px;
+                            height: 150px;
+                            margin-left: 10px;
+                            position: relative;
+
+                            .title{
+                                font-size: 20px;
+                                margin-top: 10px;
+                            }
+
+                            .desc {
+                                font-size: 14px;
+                                color: $ArticleFontColor;
+                                margin-top: 10px;
+                            }
+
+                            .price {
+                                position: absolute;
+                                right: 15px;
+                                bottom: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

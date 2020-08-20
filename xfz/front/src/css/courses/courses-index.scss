@@ -1,0 +1,82 @@
+@import "../common/base";
+@import "../common/header";
+@import "../common/footer";
+@import "../common/body";
+@import "../courses/courses-nav";
+
+.main {
+    .wrapper {
+        margin-top: 20px;
+
+        .course-list {
+            .course-list-ul {
+                $LiCourseHeight:285px;
+                $LiCourseWidth:278px;
+                $ThumbnailImgHeight:156px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                li {
+                    width: $LiCourseWidth;
+                    height: $LiCourseHeight;
+                    margin-bottom: 20px;
+
+                    .info {
+                        background: white;
+                        display: inline-block;
+
+                        .thumbnail-img {
+                            width: 100%;
+                            height: $ThumbnailImgHeight;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+
+                        .course-info {
+                            box-sizing: border-box;
+                            padding: 16px;
+                            height: $LiCourseHeight - $ThumbnailImgHeight;
+                            position: relative;
+
+
+                            .title {
+                                color: #212121;
+                                font-size: 16px;
+                                margin-bottom: 5px;
+                            }
+
+                            .author {
+                                color: #888;
+                            }
+
+                            .price {
+                                position: absolute;
+                                bottom: 16px;
+                                right: 16px;
+                            }
+
+                            .free {
+                                color: $FreeColor;
+                            }
+
+                            .pay {
+                                color: $PayColor;
+                            }
+                        }
+
+                        &:hover {
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}

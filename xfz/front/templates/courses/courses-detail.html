@@ -1,0 +1,110 @@
+{% extends 'front_base/front_base.html' %}
+{% block title %}
+    课程详情
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/courses/courses-detail.min.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="main">
+    <div class="nav-courses">
+        <div class="course-nav-box">
+            <h3>在线课堂</h3>
+            <ul class="courses-ul">
+                <li class="active"><a href="javascript:void(0)">{{ course.category.name }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="courses-info">
+            <div class="title-content">
+                <p class="title">
+                    {{ course.name }}
+                </p>
+                <div class="share-pay">
+                    <div class="share-group">
+                        <span class="share">分享至：</span>
+                    </div>
+                    <div class="price-group">
+                        <span class="price free">免费</span>
+{#                        <a href="#">立即购买</a>#}
+                    </div>
+                </div>
+            </div>
+            <div class="courses-video">
+                <img src="{{ course.picture }}" alt="">
+            </div>
+        </div>
+        <div class="courses-detail">
+            <div class="detail-group">
+                <div class="course-intro">
+                    <div class="course-title">
+                        <p>课程讲师</p>
+                    </div>
+                    <div class="teacher-info">
+                        <img src="{{ course.teacher.avatar }}" alt="">
+                        <div class="teacher-desc">
+                            <p class="teacher-name">{{ course.teacher.name }}</p>
+                            <p class="teacher-title">{{ course.teacher.title }}</p>
+                        </div>
+                    </div>
+                    <div class="intro">
+                        {{ course.teacher.intro}}
+                    </div>
+                </div>
+                <div class="course-intro">
+                    <div class="course-title">
+                        <p>课程简介</p>
+                    </div>
+                    <div class="intro">
+                        {{ course.name }}
+                    </div>
+                </div>
+                <div class="course-intro">
+                    <div class="course-title">
+                        <p>课程大纲</p>
+                    </div>
+                    <div class="intro">
+                        <ul class="course-abstract">
+                            <li>{{ course.abstract }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-intro">
+                    <div class="course-title">
+                        <p>帮助中心</p>
+                    </div>
+                    <div class="intro">
+                        <p>
+                            1. 购买后的课程在线可反复观看学习，视频有效期以具体课程信息为准。 <br>
+                            2. 课程暂不支持下载观看，均为在线观看视频。 <br>
+                            3. 课程一经购买，不可转让、不可退款；仅限购买账号观看。 <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="recommend-group">
+                <div class="sub-title">推荐课堂</div>
+                <div class="recommend-small">
+                    <ul class="recommend-ul">
+                        {% for other_cours in other_courses %}
+                            <li>
+                            <a href="{% url 'courses:courses_detail' detail_id=other_cours.pk %}">
+                                <div class="recommend-desc">
+                                    <p class="title">{{ other_cours.name }}</p>
+                                    <p class="desc">{{ other_cours.abstract|truncatechars:10 }}</p>
+                                </div>
+                                <div class="recommend-thumbnail">
+                                    <span class="tag"></span>
+                                    <img src="{{ other_cours.picture }}" alt="">
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

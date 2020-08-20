@@ -1,0 +1,55 @@
+{% extends 'front_base/front_base.html' %}
+{% block title %}
+    付费资讯
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/servers/payinfo.min.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="main">
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <div class="venture-banner">
+                <img src="/static/images/web-shop-banner.jpg" alt="">
+            </div>
+            <div class="venture-book">
+                <ul>
+                    <li>
+                        <div class="venture-img"></div>
+                        <div class="venture-desc">
+                            <p class="title">如何写好一份商业计划书</p>
+                            <p class="desc">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="price">8.8</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="venture-img"></div>
+                        <div class="venture-desc">
+                            <p class="title">如何写好一份商业计划书</p>
+                            <p class="desc">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="price">8.8</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="venture-img"></div>
+                        <div class="venture-desc">
+                            <p class="title">如何写好一份商业计划书</p>
+                            <p class="desc">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="price">8.8</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="venture-img"></div>
+                        <div class="venture-desc">
+                            <p class="title">如何写好一份商业计划书</p>
+                            <p class="desc">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="price">8.8</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% include 'front_base/front_sidebar_base.html' %}
+    </div>
+</div>
+{% endblock %}

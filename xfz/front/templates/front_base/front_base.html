@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1622669_srk5yndqy2i.css">
+    <link rel="stylesheet" href="{% static 'css/common/auth.min.css' %}">
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/auth.min.js' %}"></script>
+    <script src="{% static 'js/auth_messages.min.js' %}"></script>
+    <script src="{% static 'js/auth_after_login.min.js' %}"></script>
+    <script src="{% static 'js/xfzajax.min.js' %}"></script>
+    <script src="{% static 'js/common_header.min.js' %}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header class="head">
+    <div class="contain">
+        <div class="logo-box">
+            <a href="/"></a>
+        </div>
+        <div class="nav">
+            <ul>
+                <li class="news"><a href="{% url 'news:news_index' %}">资讯</a></li>
+                <li class="course"><a href="{% url 'courses:courses_index' %}">创业课堂</a></li>
+                <li class="service"><a href="{% url 'servers:payinfo' %}">企业服务</a></li>
+                <li class="search"><a href="/search/">搜索</a></li>
+            </ul>
+        </div>
+        <div class="search-for-report" onclick=""></div>
+        <div class="auth-box">
+            <i class="iconfont icon-person-copy"></i>
+            {% if user.is_authenticated %}
+                <a href="#" class="authenticate-box">{{ user.username }}</a>
+                <div class="user-more-box" style="display: none">
+                    <i class="triggle"></i>
+                    {% if user.is_staff %}
+                        <a href="{% url 'cms:index' %}">管理系统</a>
+                    {% endif %}
+                    <a href="{% url 'xfzauth:logout' %}">退出登录</a>
+                </div>
+            {% else %}
+                <a href="javascript:void(0)" class="login">登录</a> /
+                <a href="javascript:void(0)" class="signup">注册</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+{% block main %}{% endblock %}
+<footer class="foot">
+    <div class="about-box">
+        <div class="about-us-box">
+            <div class="icon"></div>
+            <div class="contact-way">
+                <div class="contact-top">
+                    <div class="contact-other-way">
+                        <ul class="contact-other-way-ul">
+                            <li><a href="javascript:void(0)">关于XXX</a></li>
+                            <li><a href="javascript:void(0)">创业课堂</a></li>
+                            <li><a href="javascript:void(0)">寻求报道</a></li>
+                            <li><a href="javascript:void(0)">创业礼包</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-about-us">
+                        <span class="about-us">关于我们：</span>
+                        <ul class="social-group">
+                            <li class="weixin1">
+                                <span>微信</span>
+                                <div class="weixin-qrcode1"></div>
+                            </li>
+                            <li class="weixin2">
+                                <span>XXX创业课堂</span>
+                                <div class="weixin-qrcode2"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-bottom">
+                    <div class="contact-address">地址：XX市XX区XXXX路XX号X号楼XX层XX室</div>
+                    <div class="contact-telephone">联系方式：XXX-XXX-XXX（工作日10点-18点）</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-ICP">©2020 XXXX投资顾问有限公司</div>
+</footer>
+<div class="mask-wrapper">
+            <div class="auth-group">
+                <div class="close">
+                    <span class="close-btn icon-Close iconfont"></span>
+                </div>
+                <div class="auth-wrapper">
+                    <div class="auth-group-box">
+                        <div class="login auth-part" id="login-btn">
+                            <div class="auth-top">
+                                <span class="auth-left">请登陆</span>
+                                <span class="auth-right">立即注册></span>
+                            </div>
+                            <div class="auth-bottom">
+                                <div class="form-group">
+                                    <input type="text" name="telephone" class="input-group" placeholder="手机号码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="input-group" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <lable>
+                                        <input type="checkbox" name="remember" value="1">记住我
+                                    </lable>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="立即登录" class="submit-up" id="login-submit" style="cursor: pointer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="signup auth-part" id="signup-btn">
+                            <div class="auth-top">
+                                <span class="auth-left">请注册</span>
+                                <span class="auth-right">立即登录></span>
+                            </div>
+                            <div class="auth-bottom">
+                                <div class="form-group">
+                                    <input type="text" name="telephone" class="input-group" placeholder="手机号码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="username" class="input-group" placeholder="用户名">
+                                </div>
+                                <div class="form-group">
+                                    <div class="captcha">
+                                        <input type="text" name="inner-captcha" placeholder="图形验证码" id="imgcaptcha">
+                                    </div>
+                                    <div class="img-recv">
+                                        <img src="{% url 'xfzauth:captcha' %}" alt="" class="img-captcha" style="cursor: pointer">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password1" class="input-group" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password2" class="input-group" placeholder="确认密码">
+                                </div>
+                                <!--<div class="form-group">
+                                    <div class="captcha">
+                                        <input type="text" class="inner-captcha" placeholder="短信验证码">
+                                    </div>
+                                    <div class="send-captcha">
+                                        <span>发送验证码</span>
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <input type="submit" value="立即注册" class="submit-up" id="signup-submit" style="cursor: pointer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

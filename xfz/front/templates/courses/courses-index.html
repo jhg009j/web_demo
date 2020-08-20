@@ -1,0 +1,68 @@
+{% extends 'front_base/front_base.html' %}
+{% block title %}
+    在线课堂
+{% endblock %}
+{% block head %}
+    <script src="{% static 'art-template/template-web.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/courses/courses-index.min.css' %}">
+    <script src="{% static 'js/coueses_index.min.js' %}"></script>
+    <script id="course-index" type="text/html">
+    {% verbatim %}
+    {{ each courses course index }}
+        <li>
+            <a href="/courses/{{ course.id }}/" class="info">
+                <div class="thumbnail-img">
+                    <img src="{{ course.picture }}" alt="">
+                </div>
+                <div class="course-info">
+                    <p class="title">{{ course.name }}</p>
+                    <p class="author">{{ course.teacher.name }}</p>
+                    <p class="price free">免费</p>
+                </div>
+            </a>
+        </li>
+    {{ /each }}
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    {% endverbatim %}
+    </script>
+{% endblock %}
+{% block main %}
+    <div class="main">
+    <div class="nav-courses">
+        <div class="course-nav-box">
+            <h3>在线课堂</h3>
+            <ul class="courses-ul">
+                {% for category in categories %}
+                    <li cateid="{{ category.pk }}"><a href="javascript:void(0)">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="course-list">
+            <ul class="course-list-ul">
+                {% for cours in courses %}
+                    <li>
+                        <a href="{% url 'courses:courses_detail' detail_id=cours.pk %}" class="info">
+                            <div class="thumbnail-img">
+                                <img src="{{ cours.picture }}" alt="">
+                            </div>
+                            <div class="course-info">
+                                <p class="title">{{ cours.name }}</p>
+                                <p class="author">{{ cours.teacher.name }}</p>
+                                <p class="price free">免费</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'cms/base.html' %}
+{% block head %}
+    <script src="{% static 'js/news_pub.min.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+    {% if news %}
+        修改新闻
+    {% else %}
+        发布新闻
+    {% endif %}
+{% endblock %}
+{% block content %}
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="card card-primary">
+
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form role="form">
+            <div class="card-body">
+                <div class="form-group" newsId="{{ news.id }}">
+                    <label for="title-form">标题</label>
+                    {% if news %}
+                        <input type="text" class="form-control" id="title-form" name="title"
+                               value="{{ news.title }}">
+                    {% else %}
+                        <input type="text" class="form-control" id="title-form" name="title">
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="category-form">分类</label>
+                    <select name="category" id="category-form" class="form-control">
+                        <option value="0">请选择分类</option>
+                        {% for category in categories %}
+                            {% if news and category.pk == news.category_id %}
+                                <option value="{{ news.category_id }}" selected>{{ news.category.category_name }}</option>
+                            {% else %}
+                                <option value="{{ category.pk }}">{{ category.category_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="desc-form">描述</label>
+                    {% if news %}
+                        <input type="text" class="form-control" id="desc-form" name="desc" value="{{ news.desc }}">
+                    {% else %}
+                        <input type="text" class="form-control" id="desc-form" name="desc">
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="thumbnail-form">缩略图</label>
+                    <div class="input-group">
+                        {% if news %}
+                            <input type="text" class="form-control" id="thumbnail-form" name="thumbnail"
+                                   value="{{ news.thumbnail }}">
+                        {% else %}
+                            <input type="text" class="form-control" id="thumbnail-form" name="thumbnail">
+                        {% endif %}
+                        <div class="input-group-btn">
+                            <label class="btn btn-default btn-file">
+                                上传图片<input hidden type="file" class="btn btn-default" id="thumbnail-btn">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content-form">内容</label>
+                    {% if news %}
+                        <textarea class="form-control" rows="10" name="content"
+                                  id="content-form">{{ news.content }}</textarea>
+                    {% else %}
+                        <textarea class="form-control" rows="10" name="content" id="content-form"></textarea>
+                    {% endif %}
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                {% if news %}
+                    <button type="submit" class="btn btn-primary fa-pull-right" id="pub-btn">修改新闻</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary fa-pull-right" id="pub-btn">发布新闻</button>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+    <!-- /.card -->
+</div>
+{% endblock %}

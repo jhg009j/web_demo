@@ -1,0 +1,138 @@
+{% extends 'cms/base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'daterangepicker/daterangepicker.css' %}">
+    <script src="{% static 'daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'daterangepicker/daterangepicker.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/cms/courses_manager.min.css' %}">
+    <script src="{% static 'js/course_manager.min.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+    课程信息管理
+{% endblock %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <form action="" class="form-inline" method="get">
+                                <div class="form-group">
+                                    <label for="InputDate">时间:</label>
+                                    {% if startDate %}
+                                        <input type="text" class="form-control" id="InputStartDate" placeholder="起始时间" name="course-startDate" value="{{ startDate }}">
+                                    {% else %}
+                                        <input type="text" class="form-control" id="InputStartDate" placeholder="起始时间" name="course-startDate">
+                                    {% endif %}
+                                    <span>&nbsp;—&nbsp;</span>
+                                    {% if endDate %}
+                                        <input type="text" class="form-control" id="InputEndDate" placeholder="结束时间" name="course-endDate" value="{{ endDate }}">
+                                    {% else %}
+                                        <input type="text" class="form-control" id="InputEndDate" placeholder="结束时间" name="course-endDate">
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputKeyword">标题:</label>
+                                    {% if keyword %}
+                                        <input type="text" class="form-control" id="InputKeyword" placeholder="课程关键词" name="keyword" value="{{ keyword }}">
+                                    {% else %}
+                                        <input type="text" class="form-control" id="InputKeyword" placeholder="课程关键词" name="keyword">
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputCategory">分类:</label>
+                                    <select name="category_id" id="InputCategory" class="form-control">
+                                        {% if category_id == 0 %}
+                                            <option value="0" selected>所有分类</option>
+                                        {% else %}
+                                            <option value="0">所有分类</option>
+                                        {% endif %}
+                                        {% for category in categories %}
+                                            {% if category_id == category.pk %}
+                                                <option value="{{ category.pk }}" selected>{{ category.name }}</option>
+                                            {% else %}
+                                                <option value="{{ category.pk }}">{{ category.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">查询</button>
+                                <a href="javascript:void(0);" class="clear-search">清除查询</a>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>分类</th>
+                                    <th>发布时间</th>
+                                    <th>讲师</th>
+                                    <th style="width: 100px">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for course in courses %}
+                                    <tr course-id="{{ course.pk }}">
+                                        <td><a href="{% url 'courses:courses_detail' detail_id=course.pk %}" target="_blank">{{ course.name }}</a></td>
+                                        <td>{{ course.category.name }}</td>
+                                        <td>{{ course.pub_time|date:'Y-m-d' }}</td>
+                                        <td>{{ course.teacher.name }}</td>
+                                        <td>
+                                            <a href="{% url 'cms:course_edit' %}?id={{ course.pk }}" target="_blank"><button type="button" class="btn btn-primary btn-xs">编辑</button></a>
+                                            <button type="button" class="btn btn-danger btn-xs del-btn">删除</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <div class="page">
+                                <p class="float-left">第{{ page_obj.number }}页/共{{ paginator_obj.num_pages }}页</p>
+                                <ul class="pagination m-0 float-right">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?p={{ page_obj.previous_page_number }}{{ query_url }}">«</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">«</a></li>
+                                    {% endif %}
+
+                                    {% if pre_dot %}
+                                        <li class="page-item"><a class="page-link" href="?p=1{{ query_url }}">1</a></li>
+                                        <li class="page-item"><span class="page-link">...</span></li>
+                                        <li class="page-item"><a class="page-link" href="?p={{ page_obj.previous_page_number }}{{ query_url }}">{{ page_obj.previous_page_number }}</a></li>
+                                    {% else %}
+
+                                        {% for i in pre_range %}
+                                            <li class="page-item"><a class="page-link" href="?p={{ i }}{{ query_url }}">{{ i }}</a></li>
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                    <li class="page-item"><a class="page-link" href="?p={{ page_obj.number }}{{ query_url }}">{{ page_obj.number }}</a></li>
+
+                                    {% if later_dot %}
+                                        <li class="page-item"><a class="page-link" href="?p={{ page_obj.next_page_number }}{{ query_url }}">{{ page_obj.next_page_number }}</a></li>
+                                        <li class="page-item"><span class="page-link">...</span></li>
+                                        <li class="page-item"><a class="page-link" href="?p={{ paginator_obj.num_pages }}{{ query_url }}">{{ paginator_obj.num_pages }}</a></li>
+                                    {% else %}
+                                        {% for i in later_range %}
+                                            <li class="page-item"><a class="page-link" href="?p={{ i }}{{ query_url }}">{{ i }}</a></li>
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?p={{ page_obj.next_page_number }}{{ query_url }}">»</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">»</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
