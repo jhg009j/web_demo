@@ -91,7 +91,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'webtest',
-        'PASSWORD': '123456Cat@',
+        'PASSWORD': '123456Cat',
         'PORT': '3306',
         'NAME': 'xfz',
         'HOST': '127.0.0.1',
