@@ -1,0 +1,101 @@
+{% extends 'front_base/front_base.html' %}
+{% load news_filters %}
+{% block title %}
+    首页
+{% endblock %}
+{% block head %}
+    <script src="{% static 'art-template/template-web.js' %}"></script>
+    <script src="{% static 'js/index.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/news/index.min.css' %}">
+    <script id="news-load" type="text/html">
+        {% verbatim %}
+        {{ each newslist news index }}
+
+        <li>
+            <a href="/news/{{ news.id }}/">
+                <div class="li-container">
+                    <div class="li-img"><img src="{{ news.thumbnail }}" alt=""></div>
+                    <div class="li-content">
+                        <div class="li-title">{{ news.title }}</div>
+                        <div class="li-desc">{{ news.desc }}</div>
+                        <div class="li-more">
+                            <span class="category">{{ news.category.category_name }}</span>
+                            <span class="pub-time">{{ news.pub_time|TimeSince }}</span>
+                            <span class="author">{{ news.author.username }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+
+        {{ /each }}
+        {% endverbatim %}
+    </script>
+{% endblock %}
+{% block main %}
+    <div class="main">
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <div class="nav-wrapper">
+                    <div class="navsroll" id="navsroll">
+                        <ul class="navsrollul" id="navsrollul">
+                            {% for carousel in carousels %}
+                                <li>
+                                    <a href="{{ carousel.link_to }}">
+                                        <img src="{{ carousel.carousel_url }}" alt="">
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <span class="arrow left-arrow"><</span>
+                        <span class="arrow right-arrow">></span>
+                        <div class="page-control-group">
+                            <ul class="page-control">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-list-wrapper">
+                    <div class="news-guide">
+                        <ul class="news-guide-list">
+                            <li><a href="javascript:void(0)" class="active" category-id="0">最新资讯</a></li>
+                            {% for category in categories %}
+                                <li><a href="javascript:void(0)"category-id="{{ category.pk }}">{{ category.category_name }}</a></li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="news-list">
+                        <ul class="news-list-ul">
+                            {% for newslist in newslists %}
+                                    <li>
+                                        <a href="{% url 'news:news_detail' news_id=newslist.pk %}">
+                                            <div class="li-container">
+                                                <div class="li-img"><img src="{{ newslist.thumbnail }}" alt=""></div>
+                                                <div class="li-content">
+                                                    <div class="li-title">{{ newslist.title }}</div>
+                                                    <div class="li-desc">{{ newslist.desc }}</div>
+                                                    <div class="li-more">
+                                                        <span class="category">{{ newslist.category.category_name }}</span>
+                                                        <span class="pub-time">{{ newslist.pub_time|time_since }}</span>
+                                                        <span class="author">{{ newslist.author.username }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="load-more-group">
+                        <button class="load-more" id="load-more-btn">
+                            查看更多
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% include  'front_base/front_sidebar_base.html' %}
+        </div>
+    </div>
+{% endblock %}

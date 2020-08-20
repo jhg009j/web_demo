@@ -1,0 +1,26 @@
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    list-style: none;
+    text-decoration: none;
+}
+
+$navHeight:65px;
+$newsWrapperWidth:796px;
+$wapperHeight:680px;
+$ContaintotalWidth:1170px;
+$NewsLi_ContentWidth:503px;
+$NewsLi_ContentHeight:162px;
+$NewsLi_ImgWidth:227px;
+$SidebarWrapperWidth:354px;
+$Hovercolor:orangered;
+$FooterFontSize:14px;
+$ArticleFontColor: #878787;
+$PayColor: #f54a4a;
+$FreeColor: #7ed321;
+
+body {
+    background: #f2f2f2;
+}

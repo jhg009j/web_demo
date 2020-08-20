@@ -1,0 +1,109 @@
+{% extends 'cms/base.html' %}
+{% block head %}
+    <script src="{% static 'art-template/template-web.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/cms/carousel_manager.min.css' %}">
+    <script src="{% static 'js/carousel.min.js' %}"></script>
+
+    <script type="text/html" id="carousel-card">
+        {% verbatim %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title priority-text">优先级：0</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool carousel-close-btn" data-toggle="tooltip">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body" style="display: block;">
+                <div class="carousel">
+                    <div class="carousel-img">
+                        <input type="file" name="img-load" class="carousel-load">
+                        <img src="/static/images/banner.png" alt="" class="carousel-img-add">
+                    </div>
+                    <div class="carousel-detail">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="priority" placeholder="优先级"
+                                   size="45">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="link_to" placeholder="跳转链接" size="45">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-detail"></div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary fa-pull-right save-carousel-btn" type="button">保存</button>
+            </div>
+        </div>
+        {% endverbatim %}
+    </script>
+{% endblock %}
+{% block content-header %}
+    轮播图管理
+{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <div class="col-md-12">
+            <div class="add-carousel">
+                <button type="button" class="btn btn-primary add-carousel-btn">
+                    <i class="fas fa-plus">添加轮播图</i>
+                </button>
+            </div>
+            <div class="carousel-tips">
+                <ul>
+                    <li>支持JPG，GIF，PNG格式，最多可上传4张</li>
+                    <li>比例4：1，宽度800px以上，5M以内</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-md-6 carousel-box">
+                {% if carousels %}
+                    {% for carousel in carousels %}
+                        <div class="card" carousel_id="{{ carousel.pk }}">
+                            <div class="card-header">
+                                <h3 class="card-title priority-text">优先级：{{ carousel.priority }}</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            data-toggle="tooltip">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool carousel-close-btn" data-toggle="tooltip">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display: block;">
+                                <div class="carousel">
+                                    <div class="carousel-img">
+                                        <input type="file" name="img-load" class="carousel-load">
+                                        <img src="{{ carousel.carousel_url }}" alt="" class="carousel-img-add">
+                                    </div>
+                                    <div class="carousel-detail">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="priority" placeholder="优先级" size="45" value="{{ carousel.priority }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="link_to" placeholder="跳转链接" size="45" value="{{ carousel.link_to }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-detail"></div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary fa-pull-right save-carousel-btn" type="button">保存</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,34 @@
+.content-header {
+    overflow: hidden;
+    .add-carousel-btn {
+        float: left;
+    }
+
+    .carousel-tips {
+        float: left;
+    }
+}
+
+.carousel {
+    .carousel-img {
+        float: left;
+        height: 90px;
+        width: 200px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-load {
+            display: none;
+        }
+
+    }
+
+    .carousel-detail {
+        float: left;
+        margin-left: 50px;
+    }
+}
+

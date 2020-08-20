@@ -1,0 +1,167 @@
+@import "base";
+body {
+    background: pink;
+}
+
+    .mask-wrapper {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.6);
+        overflow-y: scroll;
+        display: none;
+        z-index: 2;
+
+        .auth-group {
+            $AuthGroupWidth:400px;
+            $AuthGroupHeight:540px;
+            width: $AuthGroupWidth;
+            height: $AuthGroupHeight;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -$AuthGroupWidth/2;
+            margin-top: -$AuthGroupHeight/2;
+
+
+            .close {
+                width: $AuthGroupWidth;
+                height: 40px;
+                background: white;
+
+                .close-btn {
+                    width: 30px;
+                    height: 30px;
+                    float: right;
+                    font-size: 20px;
+                    margin-top: 10px;
+                    color: $ArticleFontColor;
+                    cursor: pointer;
+                }
+            }
+
+            .auth-wrapper {
+                width: $AuthGroupWidth;
+                height: $AuthGroupHeight - 40px;
+                overflow: hidden;
+                position: relative;
+
+                .auth-group-box {
+                    position: absolute;
+                    width: $AuthGroupWidth * 2;
+                    height: 100%;
+
+                    .auth-part {
+                        padding: 10px;
+                        width: $AuthGroupWidth;
+                        float: left;
+                        box-sizing: border-box;
+                        background: white;
+
+                        .auth-top {
+                            border-bottom: 1px solid $ArticleFontColor;
+                            overflow: hidden;
+
+                            span {
+                                display: inline-block;
+                                height: 30px;
+                            }
+
+                            .auth-left {
+                                float: left;
+                                border-bottom: 3px solid $Hovercolor;
+                            }
+
+                            .auth-right {
+                                float: right;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .auth-bottom {
+                            margin-top: 20px;
+
+                            .form-group {
+                                margin-bottom: 20px;
+                                height: 40px;
+                                width: 100%;
+
+                                .input-group {
+                                    width: 100%;
+                                    padding: 10px;
+                                    box-sizing: border-box;
+                                    outline: none;
+                                }
+
+                                .submit-up {
+                                    background: $Hovercolor;
+                                    outline: none;
+                                    font-size: 16px;
+                                    border: none;
+                                    line-height: 40px;
+                                    padding: 0 100px;
+                                    color: white;
+                                    box-sizing: border-box;
+                                    width: 100%;
+                                    border-radius: 4px;
+                                }
+
+                                .captcha {
+                                    overflow: hidden;
+                                    float: left;
+                                    #imgcaptcha {
+                                        width: 230px;
+                                        padding: 10px;
+                                        box-sizing: border-box;
+                                        outline: none;
+                                    }
+
+                                }
+
+                                .img-recv {
+                                    width: $AuthGroupWidth - 230-20-10;
+                                    float: left;
+                                    margin-left: 10px;
+                                    height: 100%;
+                                }
+
+                                .send-captcha {
+                                    height: 100%;
+
+                                    span {
+                                        width: $AuthGroupWidth - 230-20-10;
+                                        height: 40px;
+                                        float: left;
+                                        margin-left: 10px;
+                                        background: white;
+                                        border: 1px solid $Hovercolor;
+                                        outline: none;
+                                        color: $Hovercolor;
+                                        border-radius: 3px;
+                                        box-sizing: border-box;
+                                        line-height: 40px;
+                                        text-align: center;
+                                        cursor: pointer;
+                                    }
+                                }
+
+
+
+                            }
+                        }
+                    }
+
+                    .login {
+                    }
+
+                    .signup {
+                    }
+
+                }
+            }
+        }
+
+
+    }

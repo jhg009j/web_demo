@@ -1,0 +1,75 @@
+{% extends 'cms/base.html' %}
+{% block head %}
+    <script src="{% static 'js/teacher_add.min.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+    {% if teacher %}
+        修改讲师信息
+    {% else %}
+        添加讲师
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form">
+                <div class="card-body">
+                    <div class="form-group" teacherId="{{ teacher.pk }}">
+                        <label for="teacher-name">讲师姓名</label>
+                        {% if teacher %}
+                            <input type="text" class="form-control" id="course-title" name="teacher-name" value="{{ teacher.name }}">
+                        {% else %}
+                            <input type="text" class="form-control" id="course-title" name="teacher-name">
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-title">讲师头衔</label>
+                        {% if teacher %}
+                            <input type="text" class="form-control" id="teacher-title" name="teacher-title" value="{{ teacher.title }}">
+                        {% else %}
+                            <input type="text" class="form-control" id="teacher-title" name="teacher-title">
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="avatar-form">讲师照片</label>
+                        <div class="input-group">
+                            {% if teacher %}
+                                <input type="text" class="form-control" id="avatar-form" name="teacher-avatar"
+                                       value="{{ teacher.avatar }}">
+                            {% else %}
+                                <input type="text" class="form-control" id="avatar-form" name="teacher-avatar">
+                                <div class="input-group-btn">
+                                    <label class="btn btn-default btn-file">
+                                        上传图片<input hidden type="file" class="btn btn-default" id="avatar-btn">
+                                    </label>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-intro">讲师介绍</label>
+                        {% if teacher %}
+                            <textarea class="form-control" rows="10" name="teacher-intro" id="teacher-intro">{{ teacher.intro }}</textarea>
+                        {% else %}
+                            <textarea class="form-control" rows="10" name="teacher-intro" id="teacher-intro"></textarea>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    {% if teacher %}
+                        <button type="submit" class="btn btn-primary fa-pull-right" id="pub-btn">修改信息</button>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary fa-pull-right" id="pub-btn">添加讲师</button>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+    </div>
+{% endblock %}

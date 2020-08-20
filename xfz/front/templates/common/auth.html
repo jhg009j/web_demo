@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录和注册</title>
+    <link rel="stylesheet" href="../../dist/css/common/auth.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1622669_ax7as8i0z6f.css">
+    <script src="../../dist/js/jquery-3.4.1.min.js"></script>
+    <script src="../../dist/js/auth.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <button id="btn">登录/注册</button>
+        <div class="mask-wrapper">
+            <div class="auth-group">
+                <div class="close">
+                    <span class="close-btn icon-Close iconfont"></span>
+                </div>
+                <div class="auth-wrapper">
+                    <div class="auth-group-box">
+                        <div class="login auth-part" id="login-btn">
+                            <div class="auth-top">
+                                <span class="auth-left">请登陆</span>
+                                <span class="auth-right">立即注册></span>
+                            </div>
+                            <div class="auth-bottom">
+                                <div class="form-group">
+                                    <input type="text" name="telephone" class="input-group" placeholder="手机号码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="input-group" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <lable>
+                                        <input type="checkbox" name="remember" value="1">记住我
+                                    </lable>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="立即登录" class="submit-up" id="login-submit" style="cursor: pointer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="signup auth-part" id="signup-btn">
+                            <div class="auth-top">
+                                <span class="auth-left">请注册</span>
+                                <span class="auth-right">立即登录></span>
+                            </div>
+                            <div class="auth-bottom">
+                                <div class="form-group">
+                                    <input type="text" name="telephone" class="input-group" placeholder="手机号码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="username" class="input-group" placeholder="用户名">
+                                </div>
+                                <div class="form-group">
+                                    <div class="captcha">
+                                        <input type="text" class="inner-captcha" placeholder="图形验证码">
+                                    </div>
+                                    <div class="img-recv">
+                                        <img src="{% url 'xfzauth:captcha' %}" alt="" class="img-captcha" style="cursor: pointer">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password1" class="input-group" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password2" class="input-group" placeholder="确认密码">
+                                </div>
+                                <!--<div class="form-group">
+                                    <div class="captcha">
+                                        <input type="text" class="inner-captcha" placeholder="短信验证码">
+                                    </div>
+                                    <div class="send-captcha">
+                                        <span>发送验证码</span>
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <input type="submit" value="立即注册" class="submit-up" id="signup-submit" style="cursor: pointer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

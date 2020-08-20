@@ -1,0 +1,41 @@
+{% extends 'cms/base.html' %}
+{% block head %}
+    <script src="{% static 'js/course_category.min.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+    <h1>课程分类</h1>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-primary fa-pull-right" id="add-btn">添加课程分类</button>
+                </div>
+                <div class="card-body">
+                    <table class="table table table-hover">
+                        <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>课程数量</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+                            <tr cate-pk="{{ category.pk }}" cate-name="{{ category.name }}">
+                                <td>{{ category.name }}</td>
+                                <td>20</td>
+                                <td>
+                                    <button class="btn btn-warning btn-xs edit-btn">修改</button>
+                                    <button class="btn btn-danger btn-xs del-btn">删除</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
